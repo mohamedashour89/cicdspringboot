@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="createAccount()">Create Account in Salesforce</button>
+
+<pre id="result"></pre>
+
+<script>
+function createAccount() {
+    fetch("/api/createAccount", { method: "POST" })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("result").innerText =
+                JSON.stringify(data, null, 2);
+        });
+}
+
+</script>
+
+</body>
+</html>
