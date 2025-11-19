@@ -26,7 +26,7 @@ public class SalesforceAuthService {
     @Value("${salesforce.loginUrl}")
     private String loginUrl;
 
-    @Value("classpath:server.key")
+    @Value("classpath:server-key.pem")
     private Resource privateKeyFile;
 
     // Load private key
