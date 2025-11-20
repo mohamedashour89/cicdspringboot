@@ -14,7 +14,7 @@ public class SalesforceController {
     private SalesforceApiService apiService;
 
     @PostMapping("/createAccount")
-    public Map createAccount() throws Exception { // create account and return full details of the created account
+    public Map createAccount() throws Exception { // create account and return full details of the created account in salesforce
         return apiService.createAndReturnFullAccount();
     }
 }
