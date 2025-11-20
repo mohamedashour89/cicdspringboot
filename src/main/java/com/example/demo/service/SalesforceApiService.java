@@ -52,7 +52,8 @@ public class SalesforceApiService {
                 "Phone", "010-1234-5678",
                 "Website", "https://mohamedcorp.com",
                 "Industry", "Technology",
-                "AccountNumber", "A231111"
+                "AccountNumber", "A231111",
+                "Fax", "01022129005"
                     
         );
 
@@ -68,7 +69,7 @@ public class SalesforceApiService {
     public Map getAccountById(String token, String id) {
 
         String query =
-                "SELECT Id, Name, Phone, Website, Industry, AccountNumber " +
+                "SELECT Id, Name, Phone, Website, Industry, AccountNumber, Fax " +
                 "FROM Account WHERE Id = '" + id + "'";
 
         String url = "https://empathetic-badger-x02bsh-dev-ed.trailblaze.my.salesforce.com"
