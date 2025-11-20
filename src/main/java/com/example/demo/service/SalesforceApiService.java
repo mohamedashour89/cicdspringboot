@@ -46,7 +46,7 @@ public class SalesforceApiService {
         headers.set("Authorization", "Bearer " + token);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        // Insert Account with more fields
+        // Insert Account with more fields including fax
         Map<String, Object> body = Map.of(
                 "Name", "ashour",
                 "Phone", "010-1234-5678",
