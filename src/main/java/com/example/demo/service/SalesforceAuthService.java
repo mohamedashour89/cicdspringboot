@@ -25,11 +25,11 @@ public class SalesforceAuthService {
     @Value("${salesforce.loginUrl}")
     private String loginUrl;
 
-    @Value("classpath:server-key.pem")   // ✅ التصحيح الأول
+    @Value("classpath:server-key.pem")   
     private Resource privateKeyFile;
 
     // Load private key
-    private RSAPrivateKey loadPrivateKey() throws Exception {    // ✅ التصحيح الثاني كامل
+    private RSAPrivateKey loadPrivateKey() throws Exception {    
         try (var is = privateKeyFile.getInputStream()) {
             byte[] keyBytes = is.readAllBytes();
 
