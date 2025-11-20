@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
