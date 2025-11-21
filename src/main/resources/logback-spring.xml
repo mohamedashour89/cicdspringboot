@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <!-- 🔥 Profile-based LOG PATH (no default here!) -->
+    <!-- DEFAULT (when no profile is specified) -->
+    <property name="LOG_PATH" value="logs" />
+
+    <!-- Override for local -->
     <springProfile name="local">
         <property name="LOG_PATH" value="logs" />
     </springProfile>
 
+    <!-- Override for docker -->
     <springProfile name="docker">
         <property name="LOG_PATH" value="/app/logs" />
     </springProfile>
 
-    <!-- Main log file (uses LOG_PATH from active profile) -->
+    <!-- Main log file -->
     <property name="LOG_FILE" value="${LOG_PATH}/app.log" />
 
-    <!-- Console logs -->
+    <!-- Console -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Rolling logs (1 minute) -->
+    <!-- Rolling (1 minute) -->
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- Rolling every 1 minute -->
             <fileNamePattern>${LOG_PATH}/app-%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
-
             <maxHistory>60</maxHistory>
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
@@ -37,7 +39,6 @@
         </encoder>
     </appender>
 
-    <!-- Root logger -->
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="ROLLING"/>
