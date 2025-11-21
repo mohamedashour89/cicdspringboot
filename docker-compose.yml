@@ -4,6 +4,8 @@ services:
     container_name: springboot-app
     ports:
       - "9092:9090"  # JENKINS HOST PORT
+    volumes:
+      - ./logs:/app/logs
     depends_on:
       - db
     networks:
