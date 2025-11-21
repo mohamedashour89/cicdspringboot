@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <!-- Base log folder inside the container -->
-    <property name="LOG_PATH" value="/app/logs" />
+    <!-- 🔥 Profile-based LOG PATH (no default here!) -->
+    <springProfile name="local">
+        <property name="LOG_PATH" value="logs" />
+    </springProfile>
 
-    <!-- Main log file -->
+    <springProfile name="docker">
+        <property name="LOG_PATH" value="/app/logs" />
+    </springProfile>
+
+    <!-- Main log file (uses LOG_PATH from active profile) -->
     <property name="LOG_FILE" value="${LOG_PATH}/app.log" />
 
-    <!-- Consoale -->
+    <!-- Console logs -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- 1-minute rolling file -->
+    <!-- Rolling logs (1 minute) -->
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-
-            <!-- ROLL EVERY 1 MINUTE -->
+            <!-- Rolling every 1 minute -->
             <fileNamePattern>${LOG_PATH}/app-%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
 
-            <!-- keep only last 60 minutes for safety -->
             <maxHistory>60</maxHistory>
-
-            <!-- cleanup old minute logs at startup -->
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
 
