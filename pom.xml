@@ -75,6 +75,15 @@
     </dependencies>
 
     <build>
+        <!-- FORCE Maven to copy resources into the JAR (required for Jenkins Windows) -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
 
             <!-- COMPILER PLUGIN -->
