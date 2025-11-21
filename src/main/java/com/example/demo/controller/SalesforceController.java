@@ -23,6 +23,7 @@ public class SalesforceController {
     @PostMapping("/createAccount")
     public Map createAccount() throws Exception { // create account and return full details 
         log.info("Creating account");
+        log.info( "check if the account created or not");
         
         Map accountDetails = apiService.createAndReturnFullAccount();
         
