@@ -31,3 +31,24 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Log files
+*.log
+logs/
+logs/*.log
+
+# Or specifically exclude your app.log
+app.log
+logs/app.log
+
+# Maven target directory
+target/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# OS generated files
+.DS_Store
+Thumbs.db
