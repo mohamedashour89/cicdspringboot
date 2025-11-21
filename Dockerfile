@@ -7,6 +7,8 @@ WORKDIR /app
 # 3) Copy jar file from Maven build into container
 COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
 
+# 👉 Create logs folder for Logback
+RUN mkdir -p /app/logs
+
 # 4) Run the jar when container starts
 ENTRYPOINT ["java", "-jar", "app.jar"]
-
