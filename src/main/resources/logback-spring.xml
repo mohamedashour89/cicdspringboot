@@ -7,22 +7,26 @@
     <!-- Main log file -->
     <property name="LOG_FILE" value="${LOG_PATH}/app.log" />
 
-    <!-- Console output (visible in Docker logs + Jenkins console) -->
+    <!-- Consoale -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Daily rolling file appender -->
+    <!-- 1-minute rolling file -->
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/app-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>14</maxHistory>
 
-            <!-- ✨ Add this line -->
+            <!-- ROLL EVERY 1 MINUTE -->
+            <fileNamePattern>${LOG_PATH}/app-%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
+
+            <!-- keep only last 60 minutes for safety -->
+            <maxHistory>60</maxHistory>
+
+            <!-- cleanup old minute logs at startup -->
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
 
@@ -33,8 +37,8 @@
 
     <!-- Root logger -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE" />
-        <appender-ref ref="ROLLING" />
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ROLLING"/>
     </root>
 
 </configuration>
