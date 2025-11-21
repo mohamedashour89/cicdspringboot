@@ -19,11 +19,11 @@
         <file>${LOG_FILE}</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- Create a new log file every day -->
             <fileNamePattern>${LOG_PATH}/app-%d{yyyy-MM-dd}.log</fileNamePattern>
-
-            <!-- Keep logs for 14 days -->
             <maxHistory>14</maxHistory>
+
+            <!-- ✨ Add this line -->
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
 
         <encoder>
