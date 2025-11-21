@@ -10,5 +10,9 @@ COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
 # 👉 Create logs folder for Logback
 RUN mkdir -p /app/logs
 
-# 4) Run the jar when container starts
+# 4) Set the local time to KST
+ENV TZ=Asia/Seoul
+
+# 5) Run the jar when container starts
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
