@@ -2,7 +2,7 @@
 <configuration>
 
     <!-- Base log folder inside the container -->
-    <property name="LOG_PATH" value="./logs" />
+    <property name="LOG_PATH" value="/app/logs" />
 
     <!-- Main log file -->
     <property name="LOG_FILE" value="${LOG_PATH}/app.log" />
